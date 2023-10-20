@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baap Er Bank</title>
+</head>
+<style>
+    body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    width: 44%;
+    margin: auto;
+    justify-content: center;
+    }
+
+    header {
+    text-align: center;
+    background: #1e7fd3;
+    color: #fff;
+    }
+    
+    main {
+    text-align: center;
+    background: #1e7fd3;
+    color: #fff;
+    padding: 0px 33px 56px;
+    box-sizing: border-box;
+}
+.input {
+    border: navajowhite;
+    padding: 9px 5px;
+    border-radius: 6px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 14px;
+}
+#submit-btn{
+    padding: 6px 5px;
+    border: none;
+    background: #61c6f5;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
+}
+#submit-btn:hover{
+    background: #16eeca;
+    cursor: pointer;
+}
+</style>
+<body>
+    <header>
+        <h1>Wellcome to My Bank</h1>
+    </header>
+
+    <main>
+        <section>
+            <h3>Please Login</h3>
+            <div>
+                <form action="#">
+                    <input class="input" type="email" name="" id="user-email">
+                    <input class="input" type="password" name="" id="user-pass">
+                    <button id="submit-btn" type="submit">Submit</button>
+                </form>
+
+            </div>
+        </section>
+    </main>
+
+
+    <script src="signup.js"></script>
+</body>
+</html>

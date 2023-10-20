@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+body{
+    width: 80%;
+    margin: auto;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.second-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 50px;
+}
+.puffins{
+    background: #EE5A24;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: -4px 6px 11px 1px rgba(0,0,0,.4);
+}
+.turkish{
+    background: #006266;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: -4px 6px 11px 1px rgba(0,0,0,.4);
+}
+.magenta{
+    background: #6F1E51;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: -4px 6px 11px 1px rgba(0,0,0,.4);
+}
+.purple{
+    background: #9980FA;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: -4px 6px 11px 1px rgba(0,0,0,.4);
+}
+.bluemartina{
+    background: #12CBC4;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: -4px 6px 11px 1px rgba(0,0,0,.4);
+}
+header{
+    margin:20px;
+    text-align: center;
+}
+.input {
+    border: navajowhite;
+    padding: 9px 5px;
+    border-radius: 6px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 14px;
+}
+#deposit-btn, #withdraw-btn{
+    padding: 6px 5px;
+    border: none;
+    background: #006266;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+}
+#deposit-btn:hover{
+    background: #16eeca;
+    cursor: pointer;
+}
+#withdraw-btn:hover{
+    background: #16eeca;
+    cursor: pointer;
+}
+</style>
+<body>
+    <header>
+        <h1>Get some money</h1>
+    </header>
+    <main>
+        <section class="grid">
+            <div class="puffins">
+                <h4>Deposit</h4>
+                <h2>$<span id="deposit-total">00</span></h2>
+            </div>
+            <div class="turkish">
+                <h4>Withdraw</h4>
+                <h2>$<span id="withdraw-total" >00</span></h2>
+            </div>
+            <div class="magenta">
+                <h4>Balance</h4>
+                <h2>$<span id="balance-total">00</span></h2>
+            </div>
+        </section>
+<!-- ======================================================== -->
+        <section class="second-grid">
+            <div class="purple">
+                <h4>Please Deposit</h4>
+                <form action="#">
+                    <input class="input" type="text" name="" id="deposit-field" placeholder="$ amount you want to deposit">
+                    <button id="deposit-btn" type="submit">Deposit</button>
+                </form>
+
+            </div>
+            <div class="bluemartina">
+                <h4>Please Withdraw</h4>
+                <input class="input" type="text" name="" id="withdraw-field" placeholder="$ amount you want to Withdraw">
+                <button id="withdraw-btn" type="submit">Withdraw</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+
+        // Deposit Button
+        document.getElementById('deposit-btn').addEventListener('click',function(){
+            const depositFeild = document.getElementById('deposit-field');
+            const depositFeildAmountString = depositFeild.value;
+            const depositFeildAmount = parseFloat(depositFeildAmountString);
+
+            // step -2 
+            const depositTotal = document.getElementById('deposit-total');
+            const depositTotalAmountString = depositTotal.innerText;
+            const depositTotalAmount = parseFloat(depositTotalAmountString);
+
+            const newDepositAmount = depositFeildAmount +depositTotalAmount;
+
+            depositTotal.innerText = newDepositAmount;
+            depositFeild.value = " ";
+
+            // balance
+
+            const balanceTotal = document.getElementById('balance-total');
+            const balanceTotalOldString = balanceTotal.innerText;
+            const balanceTotalOld = parseFloat(balanceTotalOldString);
+            const currentBalanceTotal = balanceTotalOld + depositFeildAmount;
+            balanceTotal.innerText = currentBalanceTotal;
+
+
+
+            // step - 4 : set the deposit amount into the finel balane
+            // const totalBalance = document.getElementById('balance-total');
+            // const totalBalancePreviousString = totalBalance.innerText;
+            // const totalBalancePrevious = parseFloat(totalBalancePreviousString);
+            // const NewtotalBalance = totalBalancePrevious + currentDepositTotal;
+
+            // totalBalance.innerText = NewtotalBalance;
+
+        })
+
+        // -------------- Widthdraw
+
+        document.getElementById('withdraw-btn').addEventListener('click',function(){
+            const withdrawFeild = document.getElementById('withdraw-field');
+            const withdrawNewAmountString = withdrawFeild.value;
+            const withdrawNewAmount = parseFloat(withdrawNewAmountString);
+
+
+            const withdrawTotalBalance = document.getElementById('withdraw-total')
+            const withdrawtotalpreviousString = withdrawTotalBalance.innerText;
+            const withdrawtotalprevious = parseFloat(withdrawtotalpreviousString);
+
+            const currentWithdrawBalance = withdrawNewAmount + withdrawtotalprevious;
+            withdrawTotalBalance.innerText = currentWithdrawBalance;
+
+            withdrawFeild.value = " ";
+
+            // balance
+
+            const Wbalance = document.getElementById('balance-total');
+            const wbalancepreviousString = Wbalance.innerText;
+            const wbalanceprevious = parseFloat(wbalancepreviousString);
+
+            const currentWbalance = wbalanceprevious - withdrawNewAmount;
+
+            Wbalance.innerText = currentWbalance;
+
+
+        })
+
+        // Deposit button
+        // document.getElementById('deposit-btn').addEventListener('click',function(){
+        //     const depositField = document.getElementById('deposit-field');
+        //     const newDepositAmountString = depositField.value;
+        //     const newDepositAmount = parseFloat(newDepositAmountString);
+
+        //     // step - 3
+        //     const depositTotalElements = document.getElementById('deposit-total');
+        //     const previousDepositTotalString = depositTotalElements.innerText;
+        //     const previousDepositTotal = parseFloat(previousDepositTotalString);
+
+        //     const currentDepositTotal = newDepositAmount + previousDepositTotal;
+        //     depositTotalElements.innerText = currentDepositTotal;
+
+        //     // step - 6
+        //     const depositBalanceTotal = document.getElementById('balance-total');
+        //     const depositBalanceTotalString = depositBalanceTotal.innerText;
+        //     const depositBalanceTotalPrevious = parseFloat(depositBalanceTotalString);
+        //     const newDepositBalance = depositBalanceTotalPrevious + currentDepositTotal;
+        //     depositBalanceTotal.innerText = depositBalanceTotalPrevious;
+
+        //     depositField.value = " ";
+        // })
+
+        // // withdraw button
+        // document.getElementById('withdraw-btn').addEventListener('click',function(){
+        //     const withdrawField = document.getElementById('withdraw-field');
+        //     const newWithDrawAmountString = withdrawField.value;
+        //     const newWithDrawAmount = parseFloat(newWithDrawAmountString);
+
+        //     //step-- 3
+
+        //     const withDrawTotal = document.getElementById('withdraw-total');
+        //     const previousWithdrawTotalString = withDrawTotal.innerText;
+        //     const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
+
+        //     //step - 4
+
+        //     const currentWithdrawTotal = newWithDrawAmount + previousWithdrawTotal;
+        //     withDrawTotal.innerText = currentWithdrawTotal;
+
+        //     // step 5
+        //     // balace feild
+        //     const balanceTotalElement = document.getElementById('balance-total');
+        //     const previousBalanceTotalString = balanceTotalElement.innerText;
+        //     const previousBalanceTotal = parseFloat(previousBalanceTotalString);
+
+        //     const newBalanceTotal = previousBalanceTotal - newWithDrawAmount;
+        //     balanceTotalElement.innerText = newBalanceTotal;
+
+        //     withdrawField.value = '';
+
+        // })
+    </script>
+</body>
+</html>
